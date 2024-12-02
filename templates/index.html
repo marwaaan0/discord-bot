@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% if user %}
+            <div class="profile">
+                {% if user.avatar %}
+                    <img src="https://cdn.discordapp.com/avatars/{{ user.discord_id }}/{{ user.avatar }}.png" alt="Profile Picture" class="avatar">
+                {% endif %}
+                <h2>Welcome, {{ user.username }}!</h2>
+                <p>Email: {{ user.email }}</p>
+                <a href="{{ url_for('logout') }}" class="btn logout">Logout</a>
+            </div>
+        {% else %}
+            <div class="login-container">
+                <h1>Welcome</h1>
+                <p>Please login with Discord to continue</p>
+                <a href="{{ url_for('login') }}" class="btn discord-login">
+                    Login with Discord
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

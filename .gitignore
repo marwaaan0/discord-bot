@@ -1,0 +1,17 @@
+# Environment variables
+.env
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Instance folder
+instance/
+
+# Logs
+*.log
+
+# System Files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAXEN Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="/assets/images/logo.png" alt="DRAXEN Logo">
+                </div>
+                <div class="nav-dashboard">
+                    <div class="server-selector">
+                        <div class="server-info">
+                            <img src="/assets/images/default-server.png" alt="Server Icon" class="server-icon">
+                            <span>Select a server</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="server-dropdown">
+                            <div class="search-server">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Find a server...">
+                            </div>
+                            <div class="server-list">
+                                <div class="server-category">
+                                    <span class="category-title">Managed Servers</span>
+                                    <div class="server-items"></div>
+                                </div>
+                                <div class="server-category">
+                                    <span class="category-title">Available Servers</span>
+                                    <div class="server-items"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-tabs">
+                        <a href="#overview" class="tab active">Overview</a>
+                        <a href="#leveling" class="tab">Leveling</a>
+                        <a href="#moderation" class="tab">Moderation</a>
+                        <div class="more-tabs">
+                            <button class="more-btn">
+                                More
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="tabs-dropdown">
+                                <a href="#autoroles">Autoroles</a>
+                                <a href="#logs">Logs</a>
+                                <a href="#tickets">Tickets</a>
+                                <a href="#giveaways">Giveaways</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="language-selector">
+                    <select id="language-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="it">Italiano</option>
+                        <option value="pt">Português</option>
+                        <option value="ru">Русский</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국어</option>
+                        <option value="zh">中文</option>
+                        <option value="ar">العربية</option>
+                    </select>
+                </div>
+                <!-- Login Button -->
+                <div class="auth-container">
+                    <a href="http://localhost:5000/login" class="login-button" style="display: block;">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login with Discord
+                    </a>
+                    <!-- User Profile Menu -->
+                    <div class="user-menu" style="display: none;">
+                        <div class="user-info">
+                            <img src="/assets/images/default-avatar.png" alt="User Avatar" class="user-avatar">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <div class="user-info-details">
+                                <img src="/assets/images/default-avatar.png" alt="User Avatar" class="dropdown-avatar">
+                                <div class="user-details">
+                                    <span class="user-name">Guest User</span>
+                                    <span class="user-id">#0000</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="http://localhost:5000/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="gradient-text">The Ultimate All-in-One Discord Bot</h1>
+                <p>Moderation, Leveling, Music & much more!</p>
+                <div class="hero-buttons">
+                    <a href="#invite" class="primary-btn" id="invite-button">
+                        <i class="fab fa-discord"></i>
+                        Add to Server
+                    </a>
+                    <a href="#dashboard" class="secondary-btn">
+                        <i class="fas fa-chart-line"></i>
+                        Open Dashboard
+                    </a>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number" id="server-count">0</span>
+                        <span class="stat-label">Servers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="user-count">0</span>
+                        <span class="stat-label">Users</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="command-count">0</span>
+                        <span class="stat-label">Commands</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-background">
+                <div class="particles"></div>
+                <div class="gradient-overlay"></div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2 class="section-title" data-aos="fade-up">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3>Moderation</h3>
+                    <p>Advanced moderation tools to keep your server safe</p>
+                    <div class="feature-hover">
+                        <ul>
+                            <li>Auto-mod</li>
+                            <li>Anti-spam</li>
+                            <li>Custom commands</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-ranking-star"></i>
+                    </div>
+                    <h3>Leveling</h3>
+                    <p>Engage your community with XP and levels</p>
+                    <div class="feature-hover">
+                        <ul>
+                            <li>Custom ranks</li>
+                            <li>Level roles</li>
+                            <li>Leaderboards</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3>Music</h3>
+                    <p>High-quality music playback from various sources</p>
+                    <div class="feature-hover">
+                        <ul>
+                            <li>Multiple platforms</li>
+                            <li>Clear audio</li>
+                            <li>Queue system</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="premium" id="premium">
+            <h2 class="section-title" data-aos="fade-up">Premium Features</h2>
+            <div class="premium-plans">
+                <div class="plan-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="plan-header">
+                        <h3>Basic</h3>
+                        <div class="price">$0<span>/month</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Basic commands</li>
+                        <li><i class="fas fa-check"></i> Standard support</li>
+                        <li><i class="fas fa-check"></i> Community features</li>
+                    </ul>
+                    <a href="#" class="plan-btn">Current Plan</a>
+                </div>
+                <div class="plan-card featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="plan-header">
+                        <h3 style="color: black;">Premium</h3>
+                        <div class="price" style="color: black;">$4.99<span style="color: black;">/month</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li style="color: black;"><i class="fas fa-check" style="color: black;"></i> All Basic features</li>
+                        <li style="color: black;"><i class="fas fa-check" style="color: black;"></i> Priority support</li>
+                        <li style="color: black;"><i class="fas fa-check" style="color: black;"></i> Custom commands</li>
+                        <li style="color: black;"><i class="fas fa-check" style="color: black;"></i> Advanced analytics</li>
+                    </ul>
+                    <a href="#" class="plan-btn">Upgrade Now</a>
+                </div>
+                <div class="plan-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="plan-header">
+                        <h3>Pro</h3>
+                        <div class="price">$9.99<span>/month</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> All Premium features</li>
+                        <li><i class="fas fa-check"></i> 24/7 support</li>
+                        <li><i class="fas fa-check"></i> White-label bot</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                    </ul>
+                    <a href="#" class="plan-btn">Upgrade Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>DRAXEN</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#status">Status</a></li>
+                    <li><a href="#premium">Premium</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#support">Support</a></li>
+                    <li><a href="#commands">Commands</a></li>
+                    <li><a href="#docs">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" style="color: black !important;"><i class="fab fa-discord"></i></a>
+                    <a href="#" style="color: black !important;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: black !important;"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 DRAXEN. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
